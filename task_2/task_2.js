@@ -95,10 +95,14 @@ const createElement = (tagName, className, text) => {
     const liItem = createElement("li", "todo__item");
     const checkButton = createElement("button", "check-todo", "+");
     const paragraphElement = createElement("p", "todo__text", todoText);
+    //new!!!
+    const deleteWrap = createElement("div", "delete__wrap")
     const deleteButton = createElement("button", "delete-todo", "X");
     const dateSpan = createElement("span", "todo__date", `Date: ${new Date().toLocaleDateString()}`);
 
-    liItem.append(checkButton, paragraphElement, deleteButton, dateSpan);
+    liItem.append(checkButton, paragraphElement, deleteWrap);
+    //NEW
+    deleteWrap.append(deleteButton, dateSpan);
     // как это наружу вытянуть из функции? чтобы работало за пределами функции??????
     liItem.addEventListener("click", function(event){
         if(event.target.getAttribute("class") === "delete-todo"){
@@ -119,6 +123,7 @@ function handleAddButtonClick () {
 
 
 todoSectionInputAddBtn.addEventListener("click", handleAddButtonClick);
+
 
 
 
