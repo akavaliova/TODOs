@@ -48,6 +48,7 @@
     border: 1px solid black;
     border-radius: 5px;
     max-width: 200px;
+    text-align: center;
   }
   #addButton{
     font-family: 'Open Sans', sans-serif;
