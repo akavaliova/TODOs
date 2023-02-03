@@ -51,6 +51,11 @@ todoSectionInput.setAttribute("class", "controlls");
  const todoSectionListItemParagraph = document.createElement("p");
  todoSectionListItemParagraph.setAttribute("class", "todoList-text");
  const todoSectionInputAddBtnParagraphText = document.createTextNode("Todo text");
+
+// NEW!!! div
+const deleteWrap = document.createElement("div");
+deleteWrap.setAttribute("class", "delete__wrap");
+
  //second button inside li
  const todoSectionListCancelBtn = document.createElement("button");
  todoSectionListCancelBtn.setAttribute("class", "todoList-item--cancelBtn");
@@ -80,9 +85,14 @@ todoSectionListItem.append(todoSectionListBtn);
 todoSectionListBtn.append(todoSectionListBtnText);
 todoSectionListItem.append(todoSectionListItemParagraph);
 todoSectionListItemParagraph.append(todoSectionInputAddBtnParagraphText);
-todoSectionListItem.append(todoSectionListCancelBtn);
+
+// !!!New div
+todoSectionListItem.append(deleteWrap);
+
+// cancel button and span вставляем внутрь нового div (deleteWrap)
+deleteWrap.append(todoSectionListCancelBtn);
 todoSectionListCancelBtn.append(todoSectionListCancelBtnText);
-todoSectionListItem.append(todoSectionListDate);
+deleteWrap.append(todoSectionListDate);
 todoSectionListDate.append(todoSectionListDateText);
 
 
