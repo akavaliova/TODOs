@@ -89,37 +89,4 @@ todoListItemDate.append(todoListItemDateText);
 
 
 
-//  OOOLLLLDDDD
-
-
-
-
-// Append
-
-
-
-
-// todoSection.append(todoSectionList);
-// todoSectionList.append(todoSectionListItem);
-// todoSectionListItem.append(todoSectionListBtn);
-// todoSectionListBtn.append(todoSectionListBtnText);
-// todoSectionListItem.append(todoSectionListItemParagraph);
-// todoSectionListItemParagraph.append(todoSectionInputAddBtnParagraphText);
-
-// // !!!New div
-// todoSectionListItem.append(deleteWrap);
-
-// // cancel button and span вставляем внутрь нового div (deleteWrap)
-// deleteWrap.append(todoSectionListCancelBtn);
-// todoSectionListCancelBtn.append(todoSectionListCancelBtnText);
-// deleteWrap.append(todoSectionListDate);
-// todoSectionListDate.append(todoSectionListDateText);
-
-
-
-
-
-
-
-
 
