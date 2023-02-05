@@ -22,9 +22,11 @@ const todoInputDelBtnText = document.createTextNode("Delete all");
 const todoInputInp = document.createElement("input");
 todoInputInp.setAttribute("id", "todo__input-inp");
 todoInputInp.setAttribute("placeholder", "Enter to do...");
+todoInputInp.setAttribute("type", "text");
+
 //button (todo__input-addBtn)
 const todoInputAddBtn = document.createElement("button");
-todoInputAddBtn.setAttribute("class", "todo__input-addBtn");
+todoInputAddBtn.setAttribute("id", "todo__input-addBtn");
 const todoInputAddBtnText = document.createTextNode("Add");
 
 // UL
@@ -36,7 +38,7 @@ todoListItem.setAttribute("class", "todo__list-item");
 // checked button inside li
 const todoListItemChecked = document.createElement("button");
 todoListItemChecked.setAttribute("class", "todo__list-item--checked");
-const todoListItemCheckedText = document.createTextNode("Checked");
+const todoListItemCheckedText = document.createTextNode("Check");
 //p inside li
 const todoListItemPar = document.createElement("p");
 todoListItemPar.setAttribute("class", "todo__list-item--par");
@@ -70,11 +72,12 @@ todoListItem.append(todoListItemChecked);
 todoListItemChecked.append(todoListItemCheckedText);
 todoListItem.append(todoListItemPar);
 todoListItemPar.append(todoListItemText);
-todoList.append(todoListItemWrap);
+todoListItem.append(todoListItemWrap);
 todoListItemWrap.append(todoListItemCancel);
 todoListItemCancel.append(todoListItemCancelText);
 todoListItemWrap.append(todoListItemDate);
 todoListItemDate.append(todoListItemDateText);
+
 
 
 
