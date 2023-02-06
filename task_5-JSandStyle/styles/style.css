@@ -8,7 +8,7 @@
     padding: 20px 20px 20px 20px;
     background: rgb(207, 239, 243);
   }
-  .container {
+  #todo_container {
     max-width: 1200px; 
     padding: 0 15px;
     margin: 20px auto;
@@ -24,10 +24,6 @@
     justify-content: center;
     column-gap: 5px;
     margin-bottom: 30px;
-  }
-  .todo__list{
-    width: 100%;
-    max-width: 800px;
   }
   .todo__input-delBtn{
     font-family: 'Open Sans', sans-serif;
@@ -63,8 +59,7 @@
     padding: 5px;
     border-radius: 5px;
   }
-  #todo__list{
-    /* display: flex; */
+  .todo__list{
     justify-content: center;
     border: 1px solid black;
     border-radius: 5px;

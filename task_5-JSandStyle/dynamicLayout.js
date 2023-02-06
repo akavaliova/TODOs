@@ -58,7 +58,7 @@ function createWrapper() {
 function createContainer() {
     console.log ("Creating container");
     const containerBlock = document.createElement("div");
-    containerBlock.setAttribute("class", "container");
+    containerBlock.setAttribute("id", "todo_container");
 
     return containerBlock;
 }
@@ -76,8 +76,17 @@ function createDeleteBtn(){
     const todoInputDelBtn = document.createElement("button");
     todoInputDelBtn.setAttribute("class", "todo__input-delBtn");
     const todoInputDelBtnText = document.createTextNode("Delete all");
+    todoInputDelBtn.addEventListener("click", deleteAll);
     todoInputDelBtn.append(todoInputDelBtnText);
     return todoInputDelBtn;
+}
+
+function deleteAll(){
+    console.log("By pressing Delete all button you delete entire TODO list");
+    const todos = document.querySelectorAll('.todo__list');
+    todos.forEach(todo => {
+      todo.remove();
+    });
 }
 
 function createInputField(){
@@ -103,7 +112,7 @@ function addingTODOsBtn(){
 function createTODOlist(){
     console.log("Creating unordered list wrap which will include list elements with TODOs from users input field");
     const todoList = document.createElement("ul");
-    todoList.setAttribute("id", "todo__list");
+    todoList.setAttribute("class", "todo__list");
    
     createListElement();
 
@@ -175,14 +184,6 @@ function createDate(){
 }
 
  createTODOs();
- 
-// Ничего не получается!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// document.getElementsByClassName("todo__list-item--checked").addEventListener('click', function(){
-//     document.querySelector('p').style.color = "green";
-// })
-
-
 
 
 // // root
@@ -194,7 +195,7 @@ function createDate(){
 
 // // div container
 // const containerBlock = document.createElement("div");
-// containerBlock.setAttribute("class", "container");
+// containerBlock.setAttribute("id", "todo_container");
 
 // //div todo__input-wrap (includes: btn, input field and  btn)
 // const todoInputWrap = document.createElement("div");
@@ -216,7 +217,7 @@ function createDate(){
 
 // // UL
 // const todoList = document.createElement("ul");
-// todoList.setAttribute("id", "todo__list");
+// todoList.setAttribute("class", "todo__list");
 // // li
 // const todoListItem = document.createElement("li");
 // todoListItem.setAttribute("class", "todo__list-item");

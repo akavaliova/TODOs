@@ -25,10 +25,7 @@
     column-gap: 5px;
     margin-bottom: 30px;
   }
-  .todo__list{
-    width: 100%;
-    max-width: 800px;
-  }
+ 
   .todo__input-delBtn{
     font-family: 'Open Sans', sans-serif;
     font-weight: 200;
@@ -64,8 +61,6 @@
     border-radius: 5px;
   }
   .todo__list{
-    /* display: flex; */
-    justify-content: center;
     border: 1px solid black;
     border-radius: 5px;
     width: 100%;

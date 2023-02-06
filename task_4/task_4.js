@@ -39,15 +39,17 @@ function addTodo(){
 
 function checkTodo(){
     console.log("Making text green colored");
+    document.getElementById("check").style.color="red";
+   
 }
 
 function cancelTodo(){
-    console.log("Removes all current list item");
+    console.log("Making text black");
+    document.getElementById("check").style.color="black";
 }
 
 function getRootElement () {
     console.log("Getting root id");
-
     return document.getElementById ("root"); 
 }
 
@@ -172,7 +174,7 @@ function createDate(){
     console.log("Creating an actual date of providing TODO by user");
     const todoListItemDate = document.createElement("span");
     todoListItemDate.setAttribute("class", "todo__list-item--date");
-    const todoListItemDateText = document.createTextNode("Date");
+    const todoListItemDateText = document.createTextNode(new Date().toJSON());
     todoListItemDate.append(todoListItemDateText);
 
     return todoListItemDate;
@@ -181,3 +183,4 @@ function createDate(){
 
 // ??? Show date
 //  const dateSpan = createElement("span", "todo__date", `Date: ${new Date().toLocaleDateString()}`);
+
