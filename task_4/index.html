@@ -17,16 +17,16 @@
         <div class="todo">
             <div class="container">
                 <div class="todo__input-wrap">
-                    <button class = "todo__input-delBtn">Delete all</button>
-                    <input id="todo__input-inp" placeholder ="Enter to do..." type="text" >
-                    <button id="todo__input-addBtn">Add</button>
+                    <button class = "todo__input-delBtn"  onclick = "deleteAll()">Delete all</button>
+                    <input id="todo__input-inp" placeholder ="Enter to do..." type="text" onclick = "inputTodo()">
+                    <button id="todo__input-addBtn" onclick = "addTodo()">Add</button>
                 </div>
                 <ul id="todo__list">
                     <li class="todo__list-item">
-                        <button class="todo__list-item--checked">Check</button>
+                        <button class="todo__list-item--checked" onclick = "checkTodo()">Check</button>
                         <p class="todo__list-item--par">Todo text</p>
                     <div class="todo__list-item--wrap">
-                        <button class="todo__list-item--cancel">Cancel</button>
+                        <button class="todo__list-item--cancel" onclick = "cancelTodo()">Cancel</button>
                         <span class="todo__list-item--date">Date</span>
                     </div>
                     </li>
@@ -35,7 +35,10 @@
         </div>
     </div>
 
+    <script src="task_4.js"></script>
 </body>
 
 </html>
+
+
 
