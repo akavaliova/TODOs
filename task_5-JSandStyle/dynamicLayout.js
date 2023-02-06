@@ -129,7 +129,9 @@ function createCheckedButton(){
     const todoListItemCheckedText = document.createTextNode("Check");
     todoListItemChecked.append(todoListItemCheckedText);
 
+
     return todoListItemChecked;
+
 }
 
 function createTODOtext(){
@@ -172,7 +174,14 @@ function createDate(){
     return todoListItemDate;
 }
 
-createTODOs();
+ createTODOs();
+ 
+// Ничего не получается!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// document.getElementsByClassName("todo__list-item--checked").addEventListener('click', function(){
+//     document.querySelector('p').style.color = "green";
+// })
+
 
 
 

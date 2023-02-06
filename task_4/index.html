@@ -15,13 +15,13 @@
 <body>
     <div id="root">
         <div class="todo">
-            <div class="container">
+            <div id="todo_container">
                 <div class="todo__input-wrap">
                     <button class = "todo__input-delBtn"  onclick = "deleteAll()">Delete all</button>
-                    <input id="todo__input-inp" placeholder ="Enter to do..." type="text" onclick = "inputTodo()">
+                    <input id="todo__input-inp" placeholder ="Enter to do..." type="text">
                     <button id="todo__input-addBtn" onclick = "addTodo()">Add</button>
                 </div>
-                <ul id="todo__list">
+                <ul class="todo__list">
                     <li class="todo__list-item">
                         <button class="todo__list-item--checked" onclick = "checkTodo()">Check</button>
                         <p class="todo__list-item--par">Todo text</p>
