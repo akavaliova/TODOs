@@ -1,9 +1,8 @@
 "use strict"
 
-function createTODOs() {
-    console.log("==== Creating TODOs ====");
-
-    // I part
+// Creating "Add", "Delete All", and Input 
+function init() {
+    console.log("==== Creating 'Add', Delete All', and Input  ====");
     const root = getRootElement();
     const wrapper = createWrapper();
     const container = createContainer();
@@ -12,38 +11,46 @@ function createTODOs() {
     const input = createInputField();
     const addButton = addingTODOsBtn();
 
-    // II part
-    const list = createTODOlist();
-    const item = createListElement();
-    const checked = createCheckedButton();
-    const text = createTODOtext();
-    const deleteWrap = createDeleteAndDateWrap();
-    const deleteItem = deleteCurrentTODO();
-    const date = createDate();
-
-    // I part appends
     root.append(wrapper);
     wrapper.append(container);
     container.append(inputWrap);
     inputWrap.append(deleteInpBtn);
     inputWrap.append(input);
     inputWrap.append(addButton);
+}
 
-    // II part appends
+function createNew() {
+    console.log("==== Adding new TODO ====");
+    let inputText = document.getElementById("todo__input-inp").value;
+    const container = document.getElementById("todo_container");
+
+    const list = createTODOlist();
+    const item = createListElement();
+    const todoText = createTODOtext(inputText);
+    const checked = createCheckedButton(todoText);
+    const deleteWrap = createDeleteAndDateWrap();
+    const deleteItem = deleteCurrentTODO();
+    const date = createDate();
+
     container.append(list);
     list.append(item);
     item.append(checked);
-    item.append(text);
+    item.append(todoText);
     item.append(deleteWrap);
     deleteWrap.append(deleteItem);
     deleteWrap.append(date);
-
-    console.log("==== All elements have been created =====");
 }
 
-function getRootElement () {
-    console.log("Getting root id");
+function deleteAll() {
+    console.log("By pressing Delete all button you delete entire TODO list");
+    const todos = document.querySelectorAll('.todo__list');
+    todos.forEach(todo => {
+      todo.remove();
+    });
+}
 
+function getRootElement() {
+    console.log("Getting root id");
     return document.getElementById ("root"); 
 }
 
@@ -81,14 +88,6 @@ function createDeleteBtn(){
     return todoInputDelBtn;
 }
 
-function deleteAll(){
-    console.log("By pressing Delete all button you delete entire TODO list");
-    const todos = document.querySelectorAll('.todo__list');
-    todos.forEach(todo => {
-      todo.remove();
-    });
-}
-
 function createInputField(){
     console.log("Creating a field where users can type in their TODOs");
     const todoInputInp = document.createElement("input");
@@ -105,6 +104,7 @@ function addingTODOsBtn(){
     todoInputAddBtn.setAttribute("id", "todo__input-addBtn");
     const todoInputAddBtnText = document.createTextNode("Add");
     todoInputAddBtn.append(todoInputAddBtnText);
+    todoInputAddBtn.addEventListener("click", createNew);
 
     return todoInputAddBtn;
 }
@@ -113,8 +113,6 @@ function createTODOlist(){
     console.log("Creating unordered list wrap which will include list elements with TODOs from users input field");
     const todoList = document.createElement("ul");
     todoList.setAttribute("class", "todo__list");
-   
-    createListElement();
 
     return todoList;
 }
@@ -124,42 +122,39 @@ function createListElement(){
     const todoListItem = document.createElement("li");
     todoListItem.setAttribute("class", "todo__list-item");
 
-    createCheckedButton();
-    createTODOtext();
-    createDeleteAndDateWrap();
-
     return todoListItem;
 }
 
-function createCheckedButton(){
-    console.log("Creating Checked button, which going to make TODO text green colored");
-    const todoListItemChecked = document.createElement("button");
-    todoListItemChecked.setAttribute("class", "todo__list-item--checked");
-    const todoListItemCheckedText = document.createTextNode("Check");
-    todoListItemChecked.append(todoListItemCheckedText);
-
-
-    return todoListItemChecked;
-
-}
-
-function createTODOtext(){
+function createTODOtext(anyText){
     console.log("Getting text from input field and display it for user as a text");
     const todoListItemPar = document.createElement("p");
     todoListItemPar.setAttribute("class", "todo__list-item--par");
-    const todoListItemText = document.createTextNode("Todo text");
+    const todoListItemText = document.createTextNode(anyText);
     todoListItemPar.append(todoListItemText);
 
     return todoListItemPar;
 }
 
+function createCheckedButton(paragraph) {
+    console.log("Creating Checked button, which going to make TODO text green colored");
+    const todoListItemChecked = document.createElement("button");
+    todoListItemChecked.setAttribute("class", "todo__list-item--checked");
+    const todoListItemCheckedText = document.createTextNode("Check");
+    todoListItemChecked.addEventListener('click', function() {
+        paragraph.style.background='green';
+    });
+    todoListItemChecked.append(todoListItemCheckedText);
+
+    return todoListItemChecked;
+
+}
+
 function createDeleteAndDateWrap(){
+    
     console.log("Creating aditional wrap for delete button and actual date");
     const todoListItemWrap = document.createElement("div");
     todoListItemWrap.setAttribute("class", "todo__list-item--wrap");
-    deleteCurrentTODO();
-    createDate();
-
+    
     return todoListItemWrap;
 }
 
@@ -177,103 +172,13 @@ function createDate(){
     console.log("Creating an actual date of providing TODO by user");
     const todoListItemDate = document.createElement("span");
     todoListItemDate.setAttribute("class", "todo__list-item--date");
-    const todoListItemDateText = document.createTextNode("Date");
+    const todoListItemDateText = document.createTextNode(`${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`);
     todoListItemDate.append(todoListItemDateText);
 
     return todoListItemDate;
 }
 
- createTODOs();
-
-
-// // root
-// const root = document.getElementById ("root");
-
-// // div todo
-// const todoBlock = document.createElement("div");
-// todoBlock.setAttribute("class", "todo");
-
-// // div container
-// const containerBlock = document.createElement("div");
-// containerBlock.setAttribute("id", "todo_container");
-
-// //div todo__input-wrap (includes: btn, input field and  btn)
-// const todoInputWrap = document.createElement("div");
-// todoInputWrap.setAttribute("class", "todo__input-wrap"); 
-// //button (todo__input-delBtn)
-// const todoInputDelBtn = document.createElement("button");
-// todoInputDelBtn.setAttribute("class", "todo__input-delBtn");
-// const todoInputDelBtnText = document.createTextNode("Delete all");
-// //input itself (todo__input-inp)
-// const todoInputInp = document.createElement("input");
-// todoInputInp.setAttribute("id", "todo__input-inp");
-// todoInputInp.setAttribute("placeholder", "Enter to do...");
-// todoInputInp.setAttribute("type", "text");
-
-// //button (todo__input-addBtn)
-// const todoInputAddBtn = document.createElement("button");
-// todoInputAddBtn.setAttribute("id", "todo__input-addBtn");
-// const todoInputAddBtnText = document.createTextNode("Add");
-
-// // UL
-// const todoList = document.createElement("ul");
-// todoList.setAttribute("class", "todo__list");
-// // li
-// const todoListItem = document.createElement("li");
-// todoListItem.setAttribute("class", "todo__list-item");
-// // checked button inside li
-// const todoListItemChecked = document.createElement("button");
-// todoListItemChecked.setAttribute("class", "todo__list-item--checked");
-// const todoListItemCheckedText = document.createTextNode("Check");
-// //p inside li
-// const todoListItemPar = document.createElement("p");
-// todoListItemPar.setAttribute("class", "todo__list-item--par");
-// const todoListItemText = document.createTextNode("Todo text");
-// // div wrap for delete button and  span date
-// const todoListItemWrap = document.createElement("div");
-// todoListItemWrap.setAttribute("class", "todo__list-item--wrap");
-// // button cancel 
-// const todoListItemCancel = document.createElement("button");
-// todoListItemCancel.setAttribute("class", "todo__list-item--cancel");
-// const todoListItemCancelText = document.createTextNode("Cancel");
-// // span with a date
-// const todoListItemDate = document.createElement("span");
-// todoListItemDate.setAttribute("class", "todo__list-item--date");
-// const todoListItemDateText = document.createTextNode("Date");
-
-// // Appends First Part
-// root.append(todoBlock)
-// todoBlock.append(containerBlock);
-// containerBlock.append(todoInputWrap);
-// todoInputWrap.append(todoInputDelBtn);
-// todoInputDelBtn.append(todoInputDelBtnText);
-// todoInputWrap.append(todoInputInp);
-// todoInputWrap.append(todoInputAddBtn);
-// todoInputAddBtn.append(todoInputAddBtnText);
-// todoInputAddBtn.append(todoInputAddBtnText);
-// // Appends Second Part
-// containerBlock.append(todoList);
-// todoList.append(todoListItem);
-// todoListItem.append(todoListItemChecked);
-// todoListItemChecked.append(todoListItemCheckedText);
-// todoListItem.append(todoListItemPar);
-// todoListItemPar.append(todoListItemText);
-// todoListItem.append(todoListItemWrap);
-// todoListItemWrap.append(todoListItemCancel);
-// todoListItemCancel.append(todoListItemCancelText);
-// todoListItemWrap.append(todoListItemDate);
-// todoListItemDate.append(todoListItemDateText);
-
-
-
-
-
-
-
-
-
-
-
+init();
 
 
 
