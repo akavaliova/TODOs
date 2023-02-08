@@ -27,11 +27,11 @@
   }
   .todo__input-delBtn{
     font-family: 'Open Sans', sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 16px;
     line-height: 18px;
     text-align: center;
-    color: #282626;
+    color: black;
     background-color: #599d7d;
     border: 1px solid black;
     width: 100%;
@@ -39,6 +39,15 @@
     padding: 5px;
     border-radius: 5px;
   }
+  .todo__input-delBtn:hover{
+    box-shadow: 5px 5px 20px rgb(149, 156, 157);
+  }
+
+  .todo__input-delBtn:active{
+    outline: none;
+    box-shadow: 5px 5px 20px rgb(76, 80, 81);
+  }
+
   #todo__input-inp{
     border: 1px solid black;
     border-radius: 5px;
@@ -47,17 +56,25 @@
   }
   #todo__input-addBtn{
     font-family: 'Open Sans', sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 16px;
     line-height: 18px;
     text-align: center;
-    color: #282626;
+    color: black;
     background-color: #599d7d;
     border: 1px solid black;
     width: 100%;
     max-width: 130px;
     padding: 5px;
     border-radius: 5px;
+  }
+  #todo__input-addBtn:hover{
+    box-shadow: 5px 5px 20px #16532f;
+  }
+
+  #todo__input-addBtn:active{
+    outline: none;
+    box-shadow: 5px 5px 20px #104225;
   }
   #todo__list{
     width: 100%;
@@ -91,6 +108,16 @@
     padding-top: 5px;
     padding-bottom: 5px;
   }
+
+  .todo__list-item--checked:hover{
+    box-shadow: 5px 5px 20px #16532f;
+  }
+
+  .todo__list-item--checked:active{
+    outline: none;
+    box-shadow: 5px 5px 20px #104225;
+  }
+
   .todo__list-item--par{
     width: 100%;
     border: 1px solid #e7f0ec;
@@ -106,6 +133,9 @@
     padding-bottom: 10px;
     text-align: center;
   }
+  .active{
+    background: #7fc3a3;
+  }
   .todo__list-item--wrap{
     display: flex;
     flex-wrap: wrap;
@@ -118,7 +148,7 @@
     font-size: 16px;
     line-height: 18px;
     text-align: center;
-    color: #282626;
+    color: black;
     background-color: #599d7d;
     border: 1px solid black;
     width: 100%;
@@ -127,6 +157,16 @@
     padding-top: 5px;
     padding-bottom: 5px;
   }
+
+  .todo__list-item--cancel:hover{
+    box-shadow: 5px 5px 20px rgb(149, 156, 157);
+  }
+
+  .todo__list-item--cancel:active{
+    outline: none;
+    box-shadow: 5px 5px 20px rgb(76, 80, 81);
+  }
+
 .todo__list-item--date{
   width: 100%;
   display: inline-block;
@@ -142,6 +182,7 @@
   padding-bottom: 5px;
   text-align: center;
 }
+
 
 
 
