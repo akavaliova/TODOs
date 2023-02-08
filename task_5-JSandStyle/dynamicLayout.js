@@ -4,11 +4,12 @@
 function init() {
     const root = getRootElement();
     const wrapper = createElementWithClassName("div", "todo");
-    const container = createContainer();
+    const container = createElementWithID("div", "todo_container");
     const inputWrap = createElementWithClassName("div", "todo__input-wrap");
     const deleteAllButton = createDeleteAllButton();
     const input = createInputField();
     const addButton = createAddButton();
+    const list = createElementWithID("ul", "todo__list");
 
     root.append(wrapper);
     wrapper.append(container);
@@ -16,29 +17,30 @@ function init() {
     inputWrap.append(deleteAllButton);
     inputWrap.append(input);
     inputWrap.append(addButton);
+    container.append(list);
 }
 
 // Create new TODO block
 function createNew() {
     let inputText = document.getElementById("todo__input-inp").value;
-    const container = document.getElementById("todo_container");
-
-    const list = createElementWithClassName("ul", "todo__list");
-    const item = createElementWithClassName("li", "todo__list-item");
-    const todoText = createTODOtext(inputText);
-    const checked = createCheckedButton(todoText);
-    const deleteWrap = createElementWithClassName("div", "todo__list-item--wrap");
-    const deleteItem = createDeleteItem(list);
-    const date = createDate();
-
-    container.append(list);
-    list.append(item);
-    list.append(item);
-    item.append(checked);
-    item.append(todoText);
-    item.append(deleteWrap);
-    deleteWrap.append(deleteItem);
-    deleteWrap.append(date);
+    if (!!inputText){
+        const list = document.getElementById("todo__list");
+        const item = createElementWithClassName("li", "todo__list-item");
+        const todoText = createTODOtext(inputText);
+        const checked = createCheckedButton(todoText);
+        const deleteWrap = createElementWithClassName("div", "todo__list-item--wrap");
+        const deleteItem = createDeleteItem(item);
+        const date = createDate();
+    
+        // container.append(list);
+        list.append(item);
+        list.append(item);
+        item.append(checked);
+        item.append(todoText);
+        item.append(deleteWrap);
+        deleteWrap.append(deleteItem);
+        deleteWrap.append(date);
+    }
 }
 
 function createElementWithClassName(tag, className) {
@@ -48,10 +50,17 @@ function createElementWithClassName(tag, className) {
 }
 
 
+function createElementWithID(tag, idName){
+    let idElement = document.createElement(tag);
+    idElement.setAttribute("id", idName);
+    return idElement;
+}
 
-// Handler for "Delete All" button
+
+
+// Changed .todo__list for .todo__list-item
 function deleteAll() {
-    const todos = document.querySelectorAll('.todo__list');
+    const todos = document.querySelectorAll('.todo__list-item');
     todos.forEach(todo => {
       todo.remove();
     });
@@ -59,12 +68,6 @@ function deleteAll() {
 
 function getRootElement() {
     return document.getElementById ("root"); 
-}
-
-function createContainer() {
-    const containerBlock = document.createElement("div");
-    containerBlock.setAttribute("id", "todo_container");
-    return containerBlock;
 }
 
 function createDeleteAllButton(){
@@ -102,7 +105,6 @@ function createTODOtext(anyText){
 }
 
 function createCheckedButton(paragraph) {
-    console.log("Creating Checked button, which going to make TODO text green colored");
     const todoListItemChecked = document.createElement("button");
     todoListItemChecked.setAttribute("class", "todo__list-item--checked");
     const todoListItemCheckedText = document.createTextNode("Check");
@@ -114,14 +116,13 @@ function createCheckedButton(paragraph) {
 
 }
 
-function createDeleteItem(list){
-    console.log("Creating a button, which going to delete current list element");
+function createDeleteItem(item){
     const todoListItemCancel = document.createElement("button");
     todoListItemCancel.setAttribute("class", "todo__list-item--cancel");
     const todoListItemCancelText = document.createTextNode("Cancel");
     todoListItemCancel.append(todoListItemCancelText);
     todoListItemCancel.addEventListener('click', function(){
-        list.remove();
+        item.remove();
     })
     return todoListItemCancel;
 }
