@@ -3,9 +3,9 @@
 // Initializing page - Creating "Add" / "Delete All" buttons and Input
 function init() {
     const root = getRootElement();
-    const wrapper = createWrapper();
+    const wrapper = createElementWithClassName("div", "todo");
     const container = createContainer();
-    const inputWrap = createInputWrap();
+    const inputWrap = createElementWithClassName("div", "todo__input-wrap");
     const deleteAllButton = createDeleteAllButton();
     const input = createInputField();
     const addButton = createAddButton();
@@ -23,15 +23,16 @@ function createNew() {
     let inputText = document.getElementById("todo__input-inp").value;
     const container = document.getElementById("todo_container");
 
-    const list = createTODOlist();
-    const item = createListElement();
+    const list = createElementWithClassName("ul", "todo__list");
+    const item = createElementWithClassName("li", "todo__list-item");
     const todoText = createTODOtext(inputText);
     const checked = createCheckedButton(todoText);
-    const deleteWrap = createDeleteAndDateWrap();
+    const deleteWrap = createElementWithClassName("div", "todo__list-item--wrap");
     const deleteItem = createDeleteItem(list);
     const date = createDate();
 
     container.append(list);
+    list.append(item);
     list.append(item);
     item.append(checked);
     item.append(todoText);
@@ -39,6 +40,14 @@ function createNew() {
     deleteWrap.append(deleteItem);
     deleteWrap.append(date);
 }
+
+function createElementWithClassName(tag, className) {
+    let element = document.createElement(tag);
+    element.setAttribute("class", className);
+    return element;
+}
+
+
 
 // Handler for "Delete All" button
 function deleteAll() {
@@ -48,27 +57,14 @@ function deleteAll() {
     });
 }
 
-// 
 function getRootElement() {
     return document.getElementById ("root"); 
-}
-
-function createWrapper() {
-    const todoBlock = document.createElement("div");
-    todoBlock.setAttribute("class", "todo");
-    return todoBlock;
 }
 
 function createContainer() {
     const containerBlock = document.createElement("div");
     containerBlock.setAttribute("id", "todo_container");
     return containerBlock;
-}
-
-function createInputWrap(){
-    const todoInputWrap = document.createElement("div");
-    todoInputWrap.setAttribute("class", "todo__input-wrap"); 
-    return todoInputWrap;
 }
 
 function createDeleteAllButton(){
@@ -97,18 +93,6 @@ function createAddButton(){
     return todoInputAddBtn;
 }
 
-function createTODOlist(){
-    const todoList = document.createElement("ul");
-    todoList.setAttribute("class", "todo__list");
-    return todoList;
-}
-
-function createListElement(){
-    const todoListItem = document.createElement("li");
-    todoListItem.setAttribute("class", "todo__list-item");
-    return todoListItem;
-}
-
 function createTODOtext(anyText){
     const todoListItemPar = document.createElement("p");
     todoListItemPar.setAttribute("class", "todo__list-item--par");
@@ -128,13 +112,6 @@ function createCheckedButton(paragraph) {
     todoListItemChecked.append(todoListItemCheckedText);
     return todoListItemChecked;
 
-}
-
-function createDeleteAndDateWrap(){
-    console.log("Creating aditional wrap for delete button and actual date");
-    const todoListItemWrap = document.createElement("div");
-    todoListItemWrap.setAttribute("class", "todo__list-item--wrap");
-    return todoListItemWrap;
 }
 
 function createDeleteItem(list){
@@ -159,4 +136,3 @@ function createDate(){
 }
 
 init();
-

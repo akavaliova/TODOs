@@ -60,21 +60,20 @@
     border-radius: 5px;
   }
   .todo__list{
-    justify-content: center;
-    border: 1px solid black;
-    border-radius: 5px;
     width: 100%;
     max-width: 450px;
     margin: 0 auto 30px;
+  }
+  .todo__list-item{
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 5px;
     padding-right: 5px;
-  }
-  .todo__list-item{
-    display: flex;
-    column-gap: 10px;
-    align-items: center;
   }
   .todo__list-item--checked{
     font-family: 'Open Sans', sans-serif;
