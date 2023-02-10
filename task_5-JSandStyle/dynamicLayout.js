@@ -1,6 +1,4 @@
 "use strict"
-// **********************************************************не работает этот импорт
-// import { createElementWithClassName, createElementWithID } from "./utilsFolder./utils";
 
 // Initializing page - Creating "Add" / "Delete All" buttons Input and empty UL element
 function init() {
@@ -185,4 +183,5 @@ function createDate(date){
 }
 
 init();
+
 
