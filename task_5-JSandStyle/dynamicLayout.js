@@ -104,6 +104,11 @@ function createCheckedButton(paragraph) {
         // paragraph.style.background='green'; this method willmake background static
         todoListItemChecked.parentElement.classList.toggle("active"); // this method allows turn on and turn off the  background color,but class active should be added into stylesheet
         // or we can do paragraph.classList.toggle("active") (then we will have background color only for paragraph)
+        if (paragraph.style.textDecoration === "line-through") {
+            paragraph.style.textDecoration = "none";
+        } else {
+            paragraph.style.textDecoration = "line-through";
+        }
     });
     todoListItemChecked.append(todoListItemCheckedText);
     return todoListItemChecked;
