@@ -19,37 +19,20 @@ function init() {
     inputWrap.append(addButton);
     container.append(list);
 
-    // сохраняет тудушку при перезагрузке страницы
     const todos = getTodos();
     if (Array.isArray(todos)){
         todos.map(createNewTodoItem);
     }
 }
-
-
-// структура, как будет выглядеть тудушка:
-// тудушки будем отрисовывать их массива в localstorage, а не напрямую их инпута
-// const todoItem = {
-//     title: "Todo Text",
-//     date: new Date(),
-// }
-// // массив тудушек, который будет храниться в нашем хранилище
-// const todos = [todoItem, todoItem,todoItem]
-
-
-// NEW!!!!!!! saving todos to local storage (создаем объект на основании которого будем создавать лишки)
 // функция, которая при инициализации будет брать тудушки, если они есть и выстраивать их нам на страницу
 function getTodos(){
     const todos = localStorage.getItem("todos");
     return !!todos ? JSON.parse(todos) : null;
 }
 
-//**************************************************NEW
 // Фцнкция , которая будет забрасывать тудушку в localstorage
 function addTodoToLocalStorage(inputText) {
     const todos = getTodos() || [];
-
-    //const todoListItemDateText = document.createTextNode(`${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`);
 
     const todo = {title: inputText, date: new Date().toLocaleString()};
 
@@ -58,7 +41,6 @@ function addTodoToLocalStorage(inputText) {
     
     return todo;
 }
-
 
 // Create new TODO block
 function createNew() {
@@ -72,7 +54,7 @@ function createNew() {
         input.focus(); //makes cursor focused on input field
     }
 }
-//*************************************************NEW
+//*******NEW
 function createNewTodoItem({title, date}){
 
     const list = document.getElementById("todo__list");
