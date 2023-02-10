@@ -1,4 +1,6 @@
 "use strict"
+// **********************************************************не работает этот импорт
+// import { createElementWithClassName, createElementWithID } from "./utilsFolder./utils";
 
 // Initializing page - Creating "Add" / "Delete All" buttons Input and empty UL element
 function init() {
@@ -18,32 +20,82 @@ function init() {
     inputWrap.append(input);
     inputWrap.append(addButton);
     container.append(list);
+
+    // сохраняет тудушку при перезагрузке страницы
+    const todos = getTodos();
+    if (Array.isArray(todos)){
+        todos.map(createNewTodoItem);
+    }
 }
+
+
+// структура, как будет выглядеть тудушка:
+// тудушки будем отрисовывать их массива в localstorage, а не напрямую их инпута
+// const todoItem = {
+//     title: "Todo Text",
+//     date: new Date(),
+// }
+// // массив тудушек, который будет храниться в нашем хранилище
+// const todos = [todoItem, todoItem,todoItem]
+
+
+// NEW!!!!!!! saving todos to local storage (создаем объект на основании которого будем создавать лишки)
+// функция, которая при инициализации будет брать тудушки, если они есть и выстраивать их нам на страницу
+function getTodos(){
+    const todos = localStorage.getItem("todos");
+    return !!todos ? JSON.parse(todos) : null;
+}
+
+//**************************************************NEW
+// Фцнкция , которая будет забрасывать тудушку в localstorage
+function addTodoToLocalStorage(inputText) {
+    const todos = getTodos() || [];
+
+    //const todoListItemDateText = document.createTextNode(`${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`);
+
+    const todo = {title: inputText, date: new Date().toLocaleString()};
+
+    todos.push((todo));
+    localStorage.setItem("todos", JSON.stringify(todos));
+    
+    return todo;
+}
+
 
 // Create new TODO block
 function createNew() {
     const input = document.getElementById("todo__input-inp");
     let inputText = input.value;
     if (!!inputText){
-        const list = document.getElementById("todo__list");
-        const item = createElementWithClassName("li", "todo__list-item");
-        const todoText = createTODOtext(inputText);
-        const checked = createCheckedButton(todoText);
-        const deleteWrap = createElementWithClassName("div", "todo__list-item--wrap");
-        const deleteItem = createDeleteItem(item);
-        const date = createDate();
-        
-        list.append(item); // if we change append to prepend - it will add older list elements in the end and the new one at the beginning(it works)
-        item.append(checked);
-        item.append(todoText);
-        item.append(deleteWrap);
-        deleteWrap.append(deleteItem);
-        deleteWrap.append(date);
+        const todo = addTodoToLocalStorage(inputText);
+        createNewTodoItem(todo);
+      
         input.value = ""; //makes input field clean
         input.focus(); //makes cursor focused on input field
     }
 }
+//*************************************************NEW
+function createNewTodoItem({title, date}){
 
+    const list = document.getElementById("todo__list");
+    const item = createElementWithClassName("li", "todo__list-item");
+    const todoText = createTODOtext(title);
+    const checked = createCheckedButton(todoText);
+    const deleteWrap = createElementWithClassName("div", "todo__list-item--wrap");
+    const deleteItem = createDeleteItem(item);
+    const dateElement = createDate(date);
+    
+    list.append(item); // if we change append to prepend - it will add older list elements in the end and the new one at the beginning(it works)
+    item.append(checked);
+    item.append(todoText);
+    item.append(deleteWrap);
+    deleteWrap.append(deleteItem);
+    deleteWrap.append(dateElement);
+
+}
+
+// ****************************************************************
+// нужно перенести  в файл utils.js, но, не работает при переносе
 function createElementWithClassName(tag, className) {
     let element = document.createElement(tag);
     element.setAttribute("class", className);
@@ -124,11 +176,13 @@ function createDeleteItem(item){
     return todoListItemCancel;
 }
 
-function createDate(){
+function createDate(date){
     const todoListItemDate = createElementWithClassName("span", "todo__list-item--date");
-    const todoListItemDateText = document.createTextNode(`${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`);
+    //const todoListItemDateText = document.createTextNode(`${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`);
+    const todoListItemDateText = document.createTextNode(date);
     todoListItemDate.append(todoListItemDateText);
     return todoListItemDate;
 }
 
 init();
+
