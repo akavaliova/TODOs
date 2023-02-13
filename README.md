@@ -2,19 +2,32 @@
 
 #### Task 1
 
-- В HTML разметке создайте div с id='root' 
--  Реализуйте верстку HTML полностью динамически с помощью javascript в созданный div 
--  по итогу html файл будет только с одним дивом root, вся остальная верстка будет видна только в браузере в разделе Elements 
-- задание выполнено верно, структура документа получилась правильная 
-- идея такая, что при каждом вписании текста в поле "Enter todo..." будет добавляться li как элемент списка ul, с 
-- вложенными в тег li кнопками +, X и текстом p
+- Create a div with id='root' in the HTML markup;
+- Build the TODO application using HTML layout;
+- The top part of the applocation should include a block with Input field, Add button and Delete all button.
+- The bottom part should include unordered list, which li elements include check button, text receiving from the input field, cancel button and date/time of creating a card;
+- Add stylesheet.
 
-#### task 2
-- на основе скелета, созданного в задании 1, переписать динамическую верстку в js с помощью функций 
-- функции можно писать любые, главное, оптимизировать код и главное, чтобы при вписании текста и нажатии на ADD, выскакивали тудушки 
-- нужно, чтобы все кнопки стали рабочие 
-- кнопка delete all должна удалять все элементы списка 
-- кнопка X должна удалять текущий элемент списка 
-- кнопка + может делать что угодно, например менять цвет лишки (типо что тудушка выполнена) - это на наше усмотрение
+#### Task 2
+- Rewrite HTML layout fully dynamically with javascript into the created div;
+- The application should add a new case card when the **`Add`** button is clicked;
+- Pressing the **`Delete All`** button should delete all cards;
+- When you press the **`Cancel`** button, delete exactly the card on which the button was clicked;
+- When you click on **`Check`** button it will change the background color of the card and strikethrough the text inside it;
+- The field with the date is generated automatically with using the **`new Date()`** object.
 
-### task 3
+#### Task 3
+- Create `todos` key in `localStorage`;
+- Write two functions `getName` and `setName` to get and save data to `localStorage`;
+- Don't forget to check `localStorage` by key if it doesn't exist;
+- After reloading the page, the states of the cards `checked` / `unchecked` should be preserved;
+- `Id` for cards must be different and dynamically generated;
+- Case card data storage structure:
+- Const todos = [{}, {}, {}, {}, {}, {}, {}, {}];
+- The case card object must contain the following fields:
+- const todo = {
+            id: 1,
+            date: '19:35 17 sept',
+            text: 'Play video games',
+            isChecked: true,
+        }

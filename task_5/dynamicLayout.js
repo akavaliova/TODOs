@@ -93,6 +93,7 @@ function deleteAll() {
     todos.forEach(todoItems => {
       todoItems.remove();
     });
+    // clear local storage
 }
 
 function getRootElement() {
