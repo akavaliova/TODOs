@@ -25,9 +25,14 @@
 - Case card data storage structure:
 - Const todos = [{}, {}, {}, {}, {}, {}, {}, {}];
 - The case card object must contain the following fields:
-- const todo = {
-            id: 1,
-            date: '19:35 17 sept',
-            text: 'Play video games',
-            isChecked: true,
+- const todo = {  
+
+            id: 1,  
+
+            date: '19:35 17 sept',  
+
+            text: 'Play video games',  
+
+            isChecked: true,  
+            
         }
