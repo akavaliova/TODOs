@@ -20,26 +20,9 @@ function init() {
     container.append(list);
 
     const todos = getTodos();
-    if (Array.isArray(todos)){
+    if (Array.isArray(todos)) {
         todos.map(createNewTodoItem);
     }
-}
-// функция, которая при инициализации будет брать тудушки, если они есть и выстраивать их нам на страницу
-function getTodos(){
-    const todos = localStorage.getItem("todos");
-    return !!todos ? JSON.parse(todos) : null;
-}
-
-// Фцнкция , которая будет забрасывать тудушку в localstorage
-function addTodoToLocalStorage(inputText) {
-    const todos = getTodos() || [];
-
-    const todo = {title: inputText, date: new Date().toLocaleString()};
-
-    todos.push((todo));
-    localStorage.setItem("todos", JSON.stringify(todos));
-    
-    return todo;
 }
 
 // Create new TODO block
@@ -54,15 +37,55 @@ function createNew() {
         input.focus(); //makes cursor focused on input field
     }
 }
-//*******NEW
-function createNewTodoItem({title, date}){
+
+// функция, которая при инициализации будет брать тудушки, если они есть и выстраивать их нам на страницу
+function getTodos() {
+    const todos = localStorage.getItem("todos");
+    return !!todos ? JSON.parse(todos) : null;
+}
+
+function generateId() {
+    return Math.floor(Math.random() * 1000)
+}
+
+function clearLocalStorage () {
+    localStorage.removeItem("todos");
+}
+
+function deleteTodoById(id) {
+    let indexToDelete;
+    let todos = JSON.parse(localStorage.getItem('todos'));
+    for (let i = 0; i < todos.length; i++) {
+      let todo = todos[i];
+      if (todo.id === id) {
+        indexToDelete = i;
+        break;
+      }
+    }
+    todos.splice(indexToDelete, 1);
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+// Фцнкция , которая будет забрасывать тудушку в localstorage
+function addTodoToLocalStorage(inputText) {
+    const todos = getTodos() || [];
+
+    const todo = {title: inputText, date: new Date().toLocaleString(), id: generateId()};
+
+    todos.push((todo));
+    localStorage.setItem("todos", JSON.stringify(todos));
+    
+    return todo;
+}
+
+function createNewTodoItem({title, date, id}){
 
     const list = document.getElementById("todo__list");
     const item = createElementWithClassName("li", "todo__list-item");
     const todoText = createTODOtext(title);
     const checked = createCheckedButton(todoText);
     const deleteWrap = createElementWithClassName("div", "todo__list-item--wrap");
-    const deleteItem = createDeleteItem(item);
+    const deleteItem = createDeleteItem(item, id);
     const dateElement = createDate(date);
     
     list.append(item); // if we change append to prepend - it will add older list elements in the end and the new one at the beginning(it works)
@@ -71,7 +94,6 @@ function createNewTodoItem({title, date}){
     item.append(deleteWrap);
     deleteWrap.append(deleteItem);
     deleteWrap.append(dateElement);
-
 }
 
 // ****************************************************************
@@ -93,7 +115,7 @@ function deleteAll() {
     todos.forEach(todoItems => {
       todoItems.remove();
     });
-    // clear local storage
+    clearLocalStorage();
 }
 
 function getRootElement() {
@@ -147,19 +169,19 @@ function createCheckedButton(paragraph) {
     return todoListItemChecked;
 }
 
-function createDeleteItem(item){
+function createDeleteItem(item, id) {
     const todoListItemCancel = createElementWithClassName("button", "todo__list-item--cancel");
     const todoListItemCancelText = document.createTextNode("Cancel");
     todoListItemCancel.append(todoListItemCancelText);
     todoListItemCancel.addEventListener('click', function(){
         item.remove();
+        deleteTodoById(id);
     })
     return todoListItemCancel;
 }
 
 function createDate(date){
     const todoListItemDate = createElementWithClassName("span", "todo__list-item--date");
-    //const todoListItemDateText = document.createTextNode(`${new Date().toLocaleDateString()}, ${new Date().toLocaleTimeString()}`);
     const todoListItemDateText = document.createTextNode(date);
     todoListItemDate.append(todoListItemDateText);
     return todoListItemDate;
