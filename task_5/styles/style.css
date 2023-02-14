@@ -133,9 +133,9 @@
     padding-bottom: 10px;
     text-align: center;
   }
-  .active{
+  /* .active{
     background: #7fc3a3;
-  }
+  } */
   .todo__list-item--wrap{
     display: flex;
     flex-wrap: wrap;
